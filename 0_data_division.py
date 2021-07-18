@@ -351,6 +351,48 @@ while n < len(data_dilep_mass_low_em3):
 data_dilep_mass_new_low_em3 = np.concatenate((temp1,temp2))
 data_weight_dilep_low_em3 = np.concatenate((data_weight_low_em3,data_weight_low_em3))
 
+
+#get only eemm end states
+
+dataindexem2 = np.where(data_electron_n == 2)
+dataindexem2 = dataindexem2[0]
+
+dataindexhighem2 = np.where(data_electron_n_high == 2)
+dataindexhighem2 = dataindexhighem2[0]
+
+dataindexlowem2 = np.where(data_electron_n_low == 2)
+dataindexlowem2 = dataindexlowem2[0]
+
+
+data_inv_mass_em2 = np.take(data_inv_mass,dataindexem2)
+data_met_em2 = np.take(data_met,dataindexem2)
+data_weight_em2 = np.take(data_weight,dataindexem2)
+#data_dilep_mass_em2 = np.take(data_dilep_mass,dataindexem2)
+data_total_charge_em2 = np.take(data_total_charge,dataindexem2)
+data_jet_n_em2 = np.take(data_jet_n,dataindexem2)
+data_bjet_n_em2 = np.take(data_bjet_n,dataindexem2)
+
+data_electron_mt_em2 = np.take(data_electron_mt,dataindexem2)
+data_muon_mt_em2 = np.take(data_muon_mt,dataindexem2)
+
+data_inv_mass_high_em2 = np.take(data_inv_mass_high,dataindexhighem2)
+data_weight_high_em2 = np.take(data_weight_high,dataindexhighem2)
+#data_dilep_mass_high_em2 = np.take(data_dilep_mass_high,dataindexhighem2)
+data_total_charge_high_em2 = np.take(data_total_charge_high,dataindexhighem2)
+data_jet_n_high_em2 = np.take(data_jet_n_high,dataindexhighem2)
+data_bjet_n_high_em2 = np.take(data_bjet_n_high,dataindexhighem2)
+
+data_electron_mt_high_em2 = np.take(data_electron_mt_high,dataindexhighem2)
+data_muon_mt_high_em2 = np.take(data_muon_mt_high,dataindexhighem2)
+
+data_inv_mass_low_em2 = np.take(data_inv_mass_low,dataindexlowem2)
+data_weight_low_em2 = np.take(data_weight_low,dataindexlowem2)
+#data_dilep_mass_low_em2 = np.take(data_dilep_mass_low,dataindexlowem2)
+data_total_charge_low_em2 = np.take(data_total_charge_low,dataindexlowem2)
+data_jet_n_low_em2 = np.take(data_jet_n_low,dataindexlowem2)
+data_bjet_n_low_em2 = np.take(data_bjet_n_low,dataindexlowem2)
+
+
 #only states with 0 jets
 
 data_jet_0_index = np.where(data_jet_n == 0)

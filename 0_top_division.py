@@ -351,6 +351,47 @@ while n < len(top_dilep_mass_low_em3):
 top_dilep_mass_new_low_em3 = np.concatenate((temp1,temp2))
 top_weight_dilep_low_em3 = np.concatenate((top_weight_low_em3,top_weight_low_em3))
 
+#get only eemm end states
+
+topindexem2 = np.where(top_electron_n == 2)
+topindexem2 = topindexem2[0]
+
+topindexhighem2 = np.where(top_electron_n_high == 2)
+topindexhighem2 = topindexhighem2[0]
+
+topindexlowem2 = np.where(top_electron_n_low == 2)
+topindexlowem2 = topindexlowem2[0]
+
+
+top_inv_mass_em2 = np.take(top_inv_mass,topindexem2)
+top_met_em2 = np.take(top_met,topindexem2)
+top_weight_em2 = np.take(top_weight,topindexem2)
+#top_dilep_mass_em2 = np.take(top_dilep_mass,topindexem2)
+top_total_charge_em2 = np.take(top_total_charge,topindexem2)
+top_jet_n_em2 = np.take(top_jet_n,topindexem2)
+top_bjet_n_em2 = np.take(top_bjet_n,topindexem2)
+
+top_electron_mt_em2 = np.take(top_electron_mt,topindexem2)
+top_muon_mt_em2 = np.take(top_muon_mt,topindexem2)
+
+top_inv_mass_high_em2 = np.take(top_inv_mass_high,topindexhighem2)
+top_weight_high_em2 = np.take(top_weight_high,topindexhighem2)
+#top_dilep_mass_high_em2 = np.take(top_dilep_mass_high,topindexhighem2)
+top_total_charge_high_em2 = np.take(top_total_charge_high,topindexhighem2)
+top_jet_n_high_em2 = np.take(top_jet_n_high,topindexhighem2)
+top_bjet_n_high_em2 = np.take(top_bjet_n_high,topindexhighem2)
+
+top_electron_mt_high_em2 = np.take(top_electron_mt_high,topindexhighem2)
+top_muon_mt_high_em2 = np.take(top_muon_mt_high,topindexhighem2)
+
+top_inv_mass_low_em2 = np.take(top_inv_mass_low,topindexlowem2)
+top_weight_low_em2 = np.take(top_weight_low,topindexlowem2)
+#top_dilep_mass_low_em2 = np.take(top_dilep_mass_low,topindexlowem2)
+top_total_charge_low_em2 = np.take(top_total_charge_low,topindexlowem2)
+top_jet_n_low_em2 = np.take(top_jet_n_low,topindexlowem2)
+top_bjet_n_low_em2 = np.take(top_bjet_n_low,topindexlowem2)
+
+
 #only states with 0 jets
 
 top_jet_0_index = np.where(top_jet_n == 0)

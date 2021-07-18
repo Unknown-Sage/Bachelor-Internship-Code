@@ -989,43 +989,6 @@ higgsweight1e = simhiggse1weight*weightfactorhiggs1e
 higgsweight1 = np.concatenate((higgsweight1a,higgsweight1d,higgsweight1e))
 
 
-simhiggs2a = uproot.open(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\ntuple-306544_0.MC16a.root')
-simhiggs2d = uproot.open(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\ntuple-306544_0.MC16d.root')
-simhiggs2e = uproot.open(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\ntuple-306544_0.MC16e.root')
-
-simhiggsa2 = simhiggs2a['Nominal/BaseSelection_ml_tree_syst_Final']
-simhiggsa2cutflow = simhiggs2a['Nominal/cutflow_DxAOD']
-temp = simhiggsa2cutflow.values()
-simhiggsa2numsimvalue = temp[1]
-
-simhiggsa2weight = simhiggsa2['weight'].array(library='np')
-
-simhiggsd2 = simhiggs2d['Nominal/BaseSelection_ml_tree_syst_Final']
-simhiggsd2cutflow = simhiggs2d['Nominal/cutflow_DxAOD']
-temp = simhiggsd2cutflow.values()
-simhiggsd2numsimvalue = temp[1]
-
-simhiggsd2weight = simhiggsd2['weight'].array(library='np')
-
-simhiggse2 = simhiggs2e['Nominal/BaseSelection_ml_tree_syst_Final']
-simhiggse2cutflow = simhiggs2e['Nominal/cutflow_DxAOD']
-temp = simhiggse2cutflow.values()
-simhiggse2numsimvalue = temp[1]
-
-simhiggse2weight = simhiggse2['weight'].array(library='np')
-
-weightfactorhiggs2a = intluma*2.4924/1000000/simhiggsa2numsimvalue
-
-weightfactorhiggs2d = intlumd*2.4924/1000000/simhiggsd2numsimvalue
-weightfactorhiggs2e = intlume*2.4924/1000000/simhiggse2numsimvalue
-
-higgsweight2a = simhiggsa2weight*weightfactorhiggs2a
-
-higgsweight2d = simhiggsd2weight*weightfactorhiggs2d
-higgsweight2e = simhiggse2weight*weightfactorhiggs2e
-
-higgsweight2 = np.concatenate((higgsweight2a,higgsweight2d,higgsweight2e))
-
 higgs_weight = higgsweight1
 
 
@@ -1149,6 +1112,171 @@ higgs_muon_eta = np.take(higgs_muon_eta,higgs_n_index)
 #higgs_muon_phi = np.take(higgs_muon_phi,higgs_n_index)
 higgs_muon_mt = np.take(higgs_muon_mt,higgs_n_index)
 #higgs_met_phi = np.take(higgs_met_phi,higgs_n_index)
+
+
+#second higgs
+
+simhiggs2a = uproot.open(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\ntuple-306544_0.MC16a.root')
+simhiggs2d = uproot.open(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\ntuple-306544_0.MC16d.root')
+simhiggs2e = uproot.open(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\ntuple-306544_0.MC16e.root')
+
+simhiggsa2 = simhiggs2a['Nominal/BaseSelection_ml_tree_syst_Final']
+simhiggsa2cutflow = simhiggs2a['Nominal/cutflow_DxAOD']
+temp = simhiggsa2cutflow.values()
+simhiggsa2numsimvalue = temp[1]
+
+simhiggsa2weight = simhiggsa2['weight'].array(library='np')
+
+simhiggsd2 = simhiggs2d['Nominal/BaseSelection_ml_tree_syst_Final']
+simhiggsd2cutflow = simhiggs2d['Nominal/cutflow_DxAOD']
+temp = simhiggsd2cutflow.values()
+simhiggsd2numsimvalue = temp[1]
+
+simhiggsd2weight = simhiggsd2['weight'].array(library='np')
+
+simhiggse2 = simhiggs2e['Nominal/BaseSelection_ml_tree_syst_Final']
+simhiggse2cutflow = simhiggs2e['Nominal/cutflow_DxAOD']
+temp = simhiggse2cutflow.values()
+simhiggse2numsimvalue = temp[1]
+
+simhiggse2weight = simhiggse2['weight'].array(library='np')
+
+weightfactorhiggs2a = intluma*2.4924/1000000/simhiggsa2numsimvalue
+
+weightfactorhiggs2d = intlumd*2.4924/1000000/simhiggsd2numsimvalue
+weightfactorhiggs2e = intlume*2.4924/1000000/simhiggse2numsimvalue
+
+higgsweight2a = simhiggsa2weight*weightfactorhiggs2a
+
+higgsweight2d = simhiggsd2weight*weightfactorhiggs2d
+higgsweight2e = simhiggse2weight*weightfactorhiggs2e
+
+higgsweight2 = np.concatenate((higgsweight2a,higgsweight2d,higgsweight2e))
+
+higgs2_weight = higgsweight2
+
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='inv_mass', library='np')
+higgs2_inv_mass = temp['inv_mass']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='track_met', library='np')
+higgs2_met = temp['track_met']
+higgs2_met = higgs2_met/1000
+
+#temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='dilep_mass', library='np')
+#higgs_dilep_mass = temp['dilep_mass']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='electron_n', library='np')
+higgs2_electron_n = temp['electron_n']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='muon_n', library='np')
+higgs2_muon_n = temp['muon_n']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='electron_charge', library='np')
+higgs2_electron_charge = temp['electron_charge']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='muon_charge', library='np')
+higgs2_muon_charge = temp['muon_charge']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='jet_n', library='np')
+higgs2_jet_n = temp['jet_n']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='jet_has_btag', library='np')
+higgs2_jet_btag = temp['jet_has_btag']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='isOnZ', library='np')
+higgs2_onz = temp['isOnZ']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='muon_onZ', library='np')
+higgs2_muononz = temp['muon_onZ']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='electron_onZ', library='np')
+higgs2_electrononz = temp['electron_onZ']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='electron_pt', library='np')
+higgs2_electron_pt = temp['electron_pt']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='electron_eta', library='np')
+higgs2_electron_eta = temp['electron_eta']
+
+#temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='electron_phi', library='np')
+#higgs2_electron_phi = temp['electron_phi']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='electron_mt', library='np')
+higgs2_electron_mt = temp['electron_mt']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='muon_pt', library='np')
+higgs2_muon_pt = temp['muon_pt']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='muon_eta', library='np')
+higgs2_muon_eta = temp['muon_eta']
+
+#temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='muon_phi', library='np')
+#higgs2_muon_phi = temp['muon_phi']
+
+temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='muon_mt', library='np')
+higgs2_muon_mt = temp['muon_mt']
+
+#temp = uproot.concatenate(r'C:\Users\Lars\Documents\0bachelorstage\mc\higgs\2\*.root:Nominal/BaseSelection_ml_tree_syst_Final', filter_name='track_met_phi', library='np')
+#higgs2_met_phi = temp['track_met_phi']
+
+#removing all the isOnZ == False entries
+
+higgs2_index_onz = np.where(higgs2_onz == True)
+higgs2_index_onz = higgs2_index_onz[0]
+
+higgs2_inv_mass = np.take(higgs2_inv_mass,higgs2_index_onz)
+higgs2_met = np.take(higgs2_met,higgs2_index_onz)
+higgs2_muononz = np.take(higgs2_muononz,higgs2_index_onz)
+higgs2_electrononz = np.take(higgs2_electrononz,higgs2_index_onz)
+higgs2_weight = np.take(higgs2_weight,higgs2_index_onz)
+#higgs2_dilep_mass = np.take(higgs2_dilep_mass,higgs2_index_onz)
+higgs2_electron_n = np.take(higgs2_electron_n,higgs2_index_onz)
+higgs2_muon_n = np.take(higgs2_muon_n,higgs2_index_onz)
+higgs2_electron_charge = np.take(higgs2_electron_charge,higgs2_index_onz)
+higgs2_muon_charge = np.take(higgs2_muon_charge,higgs2_index_onz)
+higgs2_jet_n = np.take(higgs2_jet_n,higgs2_index_onz)
+higgs2_jet_btag = np.take(higgs2_jet_btag,higgs2_index_onz)
+
+higgs2_electron_pt = np.take(higgs2_electron_pt,higgs2_index_onz)
+higgs2_electron_eta = np.take(higgs2_electron_eta,higgs2_index_onz)
+#higgs2_electron_phi = np.take(higgs2_electron_phi,higgs2_index_onz)
+higgs2_electron_mt = np.take(higgs2_electron_mt,higgs2_index_onz)
+higgs2_muon_pt = np.take(higgs2_muon_pt,higgs2_index_onz)
+higgs2_muon_eta = np.take(higgs2_muon_eta,higgs2_index_onz)
+#higgs2_muon_phi = np.take(higgs2_muon_phi,higgs2_index_onz)
+higgs2_muon_mt = np.take(higgs2_muon_mt,higgs2_index_onz)
+#higgs2_met_phi = np.take(higgs2_met_phi,higgs2_index_onz)
+
+#Checking that the total lepton number is 4
+
+temp = higgs2_electron_n + higgs2_muon_n
+higgs2_n_index = np.where(temp == 4)
+higgs2_n_index = higgs2_n_index[0]
+
+higgs2_inv_mass = np.take(higgs2_inv_mass,higgs2_n_index)
+higgs2_met = np.take(higgs2_met,higgs2_n_index)
+higgs2_weight = np.take(higgs2_weight,higgs2_n_index)
+#higgs2_dilep_mass = np.take(higgs2_dilep_mass,higgs2_n_index)
+higgs2_electron_n = np.take(higgs2_electron_n,higgs2_n_index)
+higgs2_muon_n = np.take(higgs2_muon_n,higgs2_n_index)
+higgs2_electron_charge = np.take(higgs2_electron_charge,higgs2_n_index)
+higgs2_muon_charge = np.take(higgs2_muon_charge,higgs2_n_index)
+higgs2_jet_n = np.take(higgs2_jet_n,higgs2_n_index)
+higgs2_jet_btag = np.take(higgs2_jet_btag,higgs2_n_index)
+higgs2_muononz = np.take(higgs2_muononz,higgs2_n_index)
+higgs2_electrononz = np.take(higgs2_electrononz,higgs2_n_index)
+
+higgs2_electron_pt = np.take(higgs2_electron_pt,higgs2_n_index)
+higgs2_electron_eta = np.take(higgs2_electron_eta,higgs2_n_index)
+#higgs2_electron_phi = np.take(higgs2_electron_phi,higgs2_n_index)
+higgs2_electron_mt = np.take(higgs2_electron_mt,higgs2_n_index)
+higgs2_muon_pt = np.take(higgs2_muon_pt,higgs2_n_index)
+higgs2_muon_eta = np.take(higgs2_muon_eta,higgs2_n_index)
+#higgs2_muon_phi = np.take(higgs2_muon_phi,higgs2_n_index)
+higgs2_muon_mt = np.take(higgs2_muon_mt,higgs2_n_index)
+#higgs2_met_phi = np.take(higgs2_met_phi,higgs2_n_index)
+
 
 #Fake simulations
 

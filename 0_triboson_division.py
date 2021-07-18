@@ -351,6 +351,48 @@ while n < len(triboson_dilep_mass_low_em3):
 triboson_dilep_mass_new_low_em3 = np.concatenate((temp1,temp2))
 triboson_weight_dilep_low_em3 = np.concatenate((triboson_weight_low_em3,triboson_weight_low_em3))
 
+
+#get only eemm end states
+
+tribosonindexem2 = np.where(triboson_electron_n == 2)
+tribosonindexem2 = tribosonindexem2[0]
+
+tribosonindexhighem2 = np.where(triboson_electron_n_high == 2)
+tribosonindexhighem2 = tribosonindexhighem2[0]
+
+tribosonindexlowem2 = np.where(triboson_electron_n_low == 2)
+tribosonindexlowem2 = tribosonindexlowem2[0]
+
+
+triboson_inv_mass_em2 = np.take(triboson_inv_mass,tribosonindexem2)
+triboson_met_em2 = np.take(triboson_met,tribosonindexem2)
+triboson_weight_em2 = np.take(triboson_weight,tribosonindexem2)
+#triboson_dilep_mass_em2 = np.take(triboson_dilep_mass,tribosonindexem2)
+triboson_total_charge_em2 = np.take(triboson_total_charge,tribosonindexem2)
+triboson_jet_n_em2 = np.take(triboson_jet_n,tribosonindexem2)
+triboson_bjet_n_em2 = np.take(triboson_bjet_n,tribosonindexem2)
+
+triboson_electron_mt_em2 = np.take(triboson_electron_mt,tribosonindexem2)
+triboson_muon_mt_em2 = np.take(triboson_muon_mt,tribosonindexem2)
+
+triboson_inv_mass_high_em2 = np.take(triboson_inv_mass_high,tribosonindexhighem2)
+triboson_weight_high_em2 = np.take(triboson_weight_high,tribosonindexhighem2)
+#triboson_dilep_mass_high_em2 = np.take(triboson_dilep_mass_high,tribosonindexhighem2)
+triboson_total_charge_high_em2 = np.take(triboson_total_charge_high,tribosonindexhighem2)
+triboson_jet_n_high_em2 = np.take(triboson_jet_n_high,tribosonindexhighem2)
+triboson_bjet_n_high_em2 = np.take(triboson_bjet_n_high,tribosonindexhighem2)
+
+triboson_electron_mt_high_em2 = np.take(triboson_electron_mt_high,tribosonindexhighem2)
+triboson_muon_mt_high_em2 = np.take(triboson_muon_mt_high,tribosonindexhighem2)
+
+triboson_inv_mass_low_em2 = np.take(triboson_inv_mass_low,tribosonindexlowem2)
+triboson_weight_low_em2 = np.take(triboson_weight_low,tribosonindexlowem2)
+#triboson_dilep_mass_low_em2 = np.take(triboson_dilep_mass_low,tribosonindexlowem2)
+triboson_total_charge_low_em2 = np.take(triboson_total_charge_low,tribosonindexlowem2)
+triboson_jet_n_low_em2 = np.take(triboson_jet_n_low,tribosonindexlowem2)
+triboson_bjet_n_low_em2 = np.take(triboson_bjet_n_low,tribosonindexlowem2)
+
+
 #only states with 0 jets
 
 triboson_jet_0_index = np.where(triboson_jet_n == 0)
